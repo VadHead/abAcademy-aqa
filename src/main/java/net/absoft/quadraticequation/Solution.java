@@ -25,15 +25,9 @@ public class Solution {
 	
 	public static Solution equationResult(int a, int b, int c) {
 		int d = discriminantCalculate(a, b, c);
-		if (d == 0) {
-			return new Solution(rootSingle(a, b), rootSingle(a, b), d);
-		}
-		else if (d > 0) {
-			return new Solution(rootsFirst(a, b, d), rootSecond(a, b, d), d);
-		}
-		else {
-			return new Solution(d);
-		}
+		if (d == 0) return new Solution(rootSingle(a, b), rootSingle(a, b), d);
+		else if (d > 0) return new Solution(rootsFirst(a, b, d), rootSecond(a, b, d), d);
+		else return new Solution(d);
 	}
 	
 	private static int discriminantCalculate(int a, int b, int c) {
