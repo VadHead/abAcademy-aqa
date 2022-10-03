@@ -4,32 +4,39 @@ public class Solution {
 	
 	public int x1;
 	public int x2;
+	private int discriminant;
 	
 	public Solution() {
 	}
 	
-	public Solution(int x1, int x2) {
+	public Solution(int x1, int x2, int d) {
 		this.x1 = x1;
 		this.x2 = x2;
+		this.discriminant = d;
 	}
 	
-	public static void main(String[] args) {
+	public Solution(int d) {
+		this.discriminant = d;
+	}
+	
+	public int getDiscriminant() {
+		return discriminant;
 	}
 	
 	public static Solution equationResult(int a, int b, int c) {
-		int d = determinant(a, b, c);
+		int d = discriminantCalculate(a, b, c);
 		if (d == 0) {
-			return new Solution(rootSingle(a, b), rootSingle(a, b));
+			return new Solution(rootSingle(a, b), rootSingle(a, b), d);
 		}
 		else if (d > 0) {
-			return new Solution(rootsFirst(a, b, d), rootSecond(a, b, d));
+			return new Solution(rootsFirst(a, b, d), rootSecond(a, b, d), d);
 		}
 		else {
-			return null;
+			return new Solution(d);
 		}
 	}
 	
-	private static int determinant(int a, int b, int c) {
+	private static int discriminantCalculate(int a, int b, int c) {
 		return Math.multiplyExact(b, b) - Math.multiplyExact(a, c) * 4;
 	}
 	
